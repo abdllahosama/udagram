@@ -25,16 +25,16 @@ jobs:
           name: Install API Dependencies
           command: |
            npm run api:install
-      # build frontend
-      - run:
-          name: Front-End Build
-          command: |
-            npm run frontend:build
       # build backend      
       - run:
           name: API Build
           command: |
             npm run api:build
+      # build frontend
+      - run:
+          name: Front-End Build
+          command: |
+            npm run frontend:build
   # deploy step will run only after manual approval
   deploy:
     docker:
