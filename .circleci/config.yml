@@ -6,14 +6,6 @@ orbs:
   aws-cli: circleci/aws-cli@3.1.1
 # jobs founded in pipeline
 jobs:
-  # auth with aws
-  aws-cli-cred-setup:
-    executor: aws-cli/default
-    steps:
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY
-          aws-secret-access-key: AWS_ACCESS_SECRET
-          aws-region: AWS_REGION_NAME
   # build steps to both front and backend
   build:
     docker:
@@ -56,10 +48,10 @@ jobs:
       - aws-cli/setup
       - checkout
 
-      - run:
-          name: auth with aws
-          command: >
-            aws configure
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION_NAME
       # set project environment
       - run:
           name: init eb and aws
@@ -79,9 +71,6 @@ workflows:
   udagram:
     jobs:
       - build
-      - aws-cli-cred-setup:
-          context: aws
       - deploy:
           requires:
             - build
-            - aws-cli-cred-setup
