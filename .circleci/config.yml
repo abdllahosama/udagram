@@ -47,11 +47,6 @@ jobs:
       - eb/setup
       - aws-cli/setup
       - checkout
-
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY
-          aws-secret-access-key: AWS_ACCESS_SECRET
-          aws-region: AWS_REGION_NAME
       # set project environment
       - run:
           name: init eb and aws
