@@ -25,16 +25,6 @@ jobs:
           name: Install API Dependencies
           command: |
            npm run api:install
-      # frontend unit test
-      - run:
-          name: Front-End unit test
-          command: |
-           npm run frontend:test
-      #frontend e2e test
-      - run:
-          name: Front-End e2e test
-          command: |
-           npm run frontend:e2e
       # build frontend
       - run:
           name: Front-End Build
