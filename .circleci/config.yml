@@ -80,13 +80,12 @@ jobs:
           command: |
             npm run deploy
 workflows:
-  aws-cli:
-    jobs:
-      - aws-cli-cred-setup:
-          context: aws
   udagram:
     jobs:
       - build
+      - aws-cli-cred-setup:
+          context: aws
       - deploy:
           requires:
             - build
+            - aws-cli-cred-setup
