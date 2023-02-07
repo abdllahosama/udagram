@@ -1,49 +1,55 @@
 version: 2.1
+# install all requirements dependancies here we need (node, eb, aws-cli)
 orbs:
-  # orgs contain basc recipes and reproducible actions (install node, aws, etc.)
   node: circleci/node@5.0.2
   eb: circleci/aws-elastic-beanstalk@2.0.1
   aws-cli: circleci/aws-cli@3.1.1
-  # different jobs are calles later in the workflows sections
+# jobs founded in pipeline
 jobs:
   build:
     docker:
-      # the base image can run most needed actions with orbs
+      # create docker image
       - image: "cimg/node:14.15"
     steps:
       # install node and checkout code
       - node/install:
           node-version: '14.15'         
       - checkout
-      # Use root level package.json to install dependencies in the frontend app
+      # start run code from main packige.jason
       - run:
           name: Install Front-End Dependencies
           command: |
-            echo "NODE --version" 
-            echo $(node --version)
-            echo "NPM --version" 
-            echo $(npm --version)
             npm run frontend:install
-      # TODO: Install dependencies in the the backend API          
+      # install API Dependencies          
       - run:
           name: Install API Dependencies
           command: |
-           echo "TODO: Install dependencies in the the backend API  "
-      # TODO: Lint the frontend
+           npm run api:install
+      # lint frontend
       - run:
           name: Front-End Lint
           command: |
-            echo "TODO: Lint the frontend"
-      # TODO: Build the frontend app
+            npm run frontend:lint
+      # frontend unit test
+      - run:
+          name: Front-End unit test
+          command: |
+           npm run frontend:test
+      #frontend e2e test
+      - run:
+          name: Front-End e2e test
+          command: |
+           npm run frontend:e2e
+      # build frontend
       - run:
           name: Front-End Build
           command: |
-            echo "TODO: Build the frontend app"
-      # TODO: Build the backend API      
+            npm run frontend:build
+      # build backend      
       - run:
           name: API Build
           command: |
-            echo "TODO: Build the backend API"
+            npm run api:build
   # deploy step will run only after manual approval
   deploy:
     docker:
@@ -55,12 +61,25 @@ jobs:
       - eb/setup
       - aws-cli/setup
       - checkout
+      # set project environment
+      - run:
+          name: init eb and aws
+          command: >
+            cd udagram/udagram-api &&
+            eb setenv POSTGRES_USERNAME=$POSTGRES_USERNAME
+            POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+            POSTGRES_DB=$POSTGRES_DB
+            POSTGRES_HOST=$POSTGRES_HOST
+            AWS_REGION=$AWS_REGION
+            AWS_PROFILE=$AWS_PROFILE
+            AWS_BUCKET=$AWS_BUCKET
+            URL=$URL
+            JWT_SECRET=$JWT_SECRET
+      # deploy app to aws
       - run:
           name: Deploy App
-          # TODO: Install, build, deploy in both apps
           command: |
-            echo "# TODO: Install, build, deploy in both apps"
-            
+            npm run deploy
 workflows:
   udagram:
     jobs:
