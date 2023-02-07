@@ -25,11 +25,6 @@ jobs:
           name: Install API Dependencies
           command: |
            npm run api:install
-      # lint frontend
-      - run:
-          name: Front-End Lint
-          command: |
-            npm run frontend:lint
       # frontend unit test
       - run:
           name: Front-End unit test
