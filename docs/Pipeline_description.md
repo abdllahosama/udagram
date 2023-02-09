@@ -11,18 +11,18 @@ I used pipeline consists of tow main jops as follow
 
 ## In build jop the workflow as follow
 
-1- Install node versoin 14.15
-2- Checkout the repo
-3- Install Front-End Dependencies
-4- Install API Dependencies
-5- Build Front-End project
-6- Build API project
+1. Install node versoin 14.15
+2. Checkout the repo
+3. Install Front-End Dependencies
+4. Install API Dependencies
+5. Build Front-End project
+6. Build API project
 
 ## In deploy jop the workflow as follow
 
-1- Install node versoin 14.15
-2- Install eb
-3- Install aws-cli
-4- Checkout the repo
-5- set project environment
-6- Deploy both frontend and backend
+1. Install node versoin 14.15
+2. Install eb
+3. Install aws-cli
+4. Checkout the repo
+5. set project environment
+6. Deploy both frontend and backend
