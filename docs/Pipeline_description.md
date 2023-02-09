@@ -10,6 +10,7 @@ I used pipeline consists of tow main jops as follow
 *  for **eb** I use circleci/aws-elastic-beanstalk@1.0.0
 
 ## In build jop the workflow as follow
+
 1- Install node versoin 14.15
 2- Checkout the repo
 3- Install Front-End Dependencies
@@ -18,6 +19,7 @@ I used pipeline consists of tow main jops as follow
 6- Build API project
 
 ## In deploy jop the workflow as follow
+
 1- Install node versoin 14.15
 2- Install eb
 3- Install aws-cli
