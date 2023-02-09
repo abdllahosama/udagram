@@ -1,6 +1,6 @@
 # Hosting a Full-Stack Application
 
-The link of website http://udagram-frontend-bucket.s3-website-us-east-1.amazonaws.com/home
+The link of website http://udagram-frontend-bucket.s3-website-us-east-1.amazonaws.com
 
 
 ## Where can you find attachments
