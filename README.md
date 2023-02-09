@@ -8,4 +8,4 @@ The link of frontend
 
 ```
 
-you can find screenshots for each step in [https://github.com/abdllahosama/udagram/tree/main/Screenshots](Screenshots) folder
+you can find screenshots for each step in [Screenshots](https://github.com/abdllahosama/udagram/tree/main/Screenshots) folder
